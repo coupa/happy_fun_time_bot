@@ -1,5 +1,4 @@
-# For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
-
+## For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
 jid: ".......@chat.hipchat.com"
 nick: "......"
 room: "......@conf.hipchat.com"
