@@ -1,3 +1,8 @@
+Fill out your own hipchat.example.yml to hipchat.yml and fill in with valid details.
+# For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
+And then run your own bot.
+>ruby bin/happy_fun_time_bot.rb
+
 # Happy fun time bot
 
 Have happy fun times with this configurable XMPP bot!  It is SO easy to use, especially for Hipchat!
