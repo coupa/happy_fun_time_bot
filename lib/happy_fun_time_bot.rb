@@ -52,6 +52,7 @@ class HappyFunTimeBot
   private
 
   def process(from, command)
+    File.open("../log/debug.log", 'a') {|f| f.write("\n Processing " + from + command) }
     return [] if !responders.any? {|r| r.command.nil? } and !(command =~ self.config[:command_regex])
 
     responders.select {|r| r.responds_to?($1) }.map  do |responder|
@@ -61,6 +62,8 @@ class HappyFunTimeBot
       send_response(ret)
       ret
     end
+  rescue => e
+    File.open("../log/debug.log", 'a') {|f| f.write(e.message + "\n" + e.backtrace.inspect) }
   end
 
   def send_response(msg)
