@@ -26,7 +26,7 @@ end
 end
 
 @bot.add_responder('correct', :help_text => "Ask CYN if something is correct") do |from, args|
-  "Correct! (cyn)"
+  rand(2) == 1 ? "Correct! (cyn)" : "J.K. (cyn)"
 end
 
 @bot.run!
