@@ -18,6 +18,12 @@ class Google
     end
   end
 
+  def self.get_definition(search)
+    result = Google.get("http://www.google.com/dictionary/json?callback=dict_api.callbacks.id100&q=#{search}&sl=en&tl=en&restrict=pr%2Cde&client=te")
+    meanings = result['primaries']['entries'].select{|entry| entry["type"] == 'meaning' }.join('\n')
+    meanings
+  end
+
   def self.get_youtube_url(search)
     res = Google.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(args)}&alt=json")
     res["feed"]["entry"][0]["link"][0]['href']

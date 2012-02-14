@@ -17,8 +17,12 @@ config = YAML.load_file('../config/hipchat.yml')
   Google.get_image_url(args)
 end
 
-@bot.add_responder('define') do |from, args|
+@bot.add_responder('slang') do |from, args|
   UrbanDictionary.get_term(args)
+end
+
+@bot.add_responder('define') do |from, args|
+  Google.get_definition(args)
 end
 
 @bot.run!
