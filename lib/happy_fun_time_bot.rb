@@ -11,6 +11,7 @@ $: << File.expand_path(File.dirname(__FILE__))
 require 'responder'
 require 'bot/muc_client'
 require 'google'
+require 'urban_dictionary'
 
 class HappyFunTimeBot
   attr_accessor :config, :client, :muc, :responders, :command_regexp

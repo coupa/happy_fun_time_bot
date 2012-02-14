@@ -10,7 +10,12 @@ class Google
     end
 
     res = Google.get("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&safe=active&start=#{options[:start]}&rsz=8&q=#{URI.escape(search)}")
-    res["responseData"]["results"][rand(8)]["url"]
+    
+    begin
+      "Look! #{res['responseData']['results'][rand(8)]['url']}"
+    rescue
+      "Sorry! No image found."
+    end
   end
 
   def self.get_youtube_url(search)
