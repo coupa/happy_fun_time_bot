@@ -5,8 +5,13 @@ class UrbanDictionary
   format :json
 
   def self.get_term(search)
-    res = UrbanDictionary.get("http://www.urbandictionary.com/iphone/search/define?term=#{URI.escape(search)}")
-    definition = res['list'].first['definition'] || 'No definition found.'
-    "#{search}: #{definition}"    
+    names = ["brent", "andrew", "james", "carl", "cyn", "david", "eddy", "stephane", "priya", "dogan"]
+    if names.include?(search.downcase)
+      "(brent) asked me not to slang our names."
+    else
+      res = UrbanDictionary.get("http://www.urbandictionary.com/iphone/search/define?term=#{URI.escape(search)}")
+      definition = res['list'].first['definition'] || 'No definition found.'
+      "#{search}: #{definition}"
+    end
   end
 end
