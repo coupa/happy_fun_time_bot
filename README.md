@@ -20,10 +20,14 @@ Lets take a look!
 require 'rubygems'
 require 'happy_fun_time_bot'
 
-@bot = HappyFunTimeBot.new(:jid => "xxxx@chat.hipchat.com", 
-                           :nick => "HappyFunTime Bot", 
-                           :room => "123_your_talk_chan@conf.hipchat.com", 
-                           :password => "xxxx")
+config = YAML.load_file('../config/hipchat.yml')
+
+@bot = HappyFunTimeBot.new(
+  :jid => config["jid"], 
+  :nick => config["nick"], 
+  :room => config["room"], 
+  :password => config["password"]
+)
 
 @bot.add_responder('heybot') do |from, args|
   "Oh HAI #{from}!!!"
