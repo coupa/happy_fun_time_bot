@@ -18,4 +18,9 @@ config = YAML.load_file('../config/hipchat.yml')
   "Look! #{url}"
 end
 
+@bot.add_responder('define') do |from, args|
+  definition = UrbanDictionary.get_term(args)
+  "#{args}: #{definition}"
+end
+
 @bot.run!
