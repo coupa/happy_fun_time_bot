@@ -25,7 +25,15 @@ class HappyFunTimeBot
     self.config = config
 
     Jabber.debug = true if Jabber.logger = config[:debug]
+    self.add_responder('help', :help_text => 'List Available Commands') do |from, args|
+      self.help
+    end
     self
+  end
+
+  def help
+    commands = self.responders.map{|r| "#{r.command}#{" -> #{r.options[:help_text]}" if r.options[:help_text]}"}.join("\n")
+    "Available Commands\n#{commands}"
   end
 
   def connect
@@ -41,8 +49,8 @@ class HappyFunTimeBot
     self
   end
 
-  def add_responder(command  = nil, &block)
-    responders << Responder.new(command, &block)
+  def add_responder(command  = nil, options = {}, &block)
+    responders << Responder.new(command, options, &block)
   end
 
   def run!

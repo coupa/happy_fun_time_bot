@@ -13,15 +13,15 @@ config = YAML.load_file('../config/hipchat.yml')
 )
 
 # let's find some images!
-@bot.add_responder('image') do |from, args|
+@bot.add_responder('image', :help_text => "Search Google for an Image") do |from, args|
   Google.get_image_url(args)
 end
 
-@bot.add_responder('slang') do |from, args|
+@bot.add_responder('slang', :help_text => "Search UrbanDictionary for word") do |from, args|
   UrbanDictionary.get_term(args)
 end
 
-@bot.add_responder('define') do |from, args|
+@bot.add_responder('define', :help_text => "Search Google for word Definition (not working)") do |from, args|
   Google.get_definition(args)
 end
 

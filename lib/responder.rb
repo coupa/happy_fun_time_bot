@@ -1,8 +1,9 @@
 class Responder
-  attr_accessor :command, :block
+  attr_accessor :command, :block, :options
 
-  def initialize(command, &block)
+  def initialize(command, options ={}, &block)
     @command = command
+    @options = options
     @block = block
   end
 
