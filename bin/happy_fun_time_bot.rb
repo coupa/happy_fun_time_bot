@@ -25,7 +25,7 @@ end
   Google.get_definition(args)
 end
 
-@bot.add_responder('correct', :help_text => "Notify CYN that it is correct") do |from, args|
+@bot.add_responder('correct', :help_text => "Ask CYN if something is correct") do |from, args|
   "Correct! (cyn)"
 end
 
