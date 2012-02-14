@@ -63,7 +63,7 @@ class HappyFunTimeBot
       ret
     end
   rescue => e
-    File.open("../log/debug.log", 'a') {|f| f.write("#{e.message}\n#{e.backtrace.to_yaml}\n") }
+    File.open("../log/debug.log", 'a') {|f| f.write("\n#{e.message}\n\n#{e.backtrace.to_yaml}\n") }
   end
 
   def send_response(msg)

@@ -51,3 +51,5 @@ config/hipchat.yml
 #*.rbc
 
 .rvmrc
+
+log/*.log
