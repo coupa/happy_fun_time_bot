@@ -52,7 +52,7 @@ class HappyFunTimeBot
   private
 
   def process(from, command)
-    File.open("../log/debug.log", 'a') {|f| f.write("\n Processing " + from + command) }
+    File.open("../log/debug.log", 'a') {|f| f.write("Running process(#{from}, #{command})\n") }
     return [] if !responders.any? {|r| r.command.nil? } and !(command =~ self.config[:command_regex])
 
     responders.select {|r| r.responds_to?($1) }.map  do |responder|
@@ -63,7 +63,7 @@ class HappyFunTimeBot
       ret
     end
   rescue => e
-    File.open("../log/debug.log", 'a') {|f| f.write(e.message + "\n" + e.backtrace.inspect) }
+    File.open("../log/debug.log", 'a') {|f| f.write("#{e.message}\n#{e.backtrace.to_yaml}\n") }
   end
 
   def send_response(msg)
