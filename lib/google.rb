@@ -19,7 +19,8 @@ class Google
     raise RuntimeError if !url
     
     Timeout::timeout(8) do
-      if HTTParty.get(url).response.code == '200'
+      response = HTTParty.get(url).response
+      if response.code == '200' && response.content_type != 'text/html'      
         url
       else
         grab_tested_image_url(results, url_list)
