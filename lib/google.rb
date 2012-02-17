@@ -1,20 +1,43 @@
+require 'rubygems'
 require 'httparty'
+require 'ruby-debug'
 # Let's create a simple image getter from google.
 class Google
   include HTTParty
   format :json
 
+  def self.image_url_list(results)
+    (0..(results['responseData']['results'].length - 1)).collect do |index|
+      results['responseData']['results'][index]['url']
+    end.sort_by do rand end
+  end
+  
+  def self.grab_tested_image_url(results, url_list = nil)
+    url_list = image_url_list(results) if !url_list
+    url = url_list.pop
+    
+    raise RuntimeError if !url
+    
+    Timeout::timeout(8) do
+      if HTTParty.get(url).response.code == '200'
+        url
+      else
+        grab_tested_image_url(results, url_list)
+      end
+    end    
+  end
+  
   def self.get_image_url(search, options = {:start => 0})
     if options[:random]
       options[:start] = rand(12)
     end
 
-    res = Google.get("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&safe=active&start=#{options[:start]}&rsz=8&q=#{URI.escape(search)}")
+    results = Google.get("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&safe=active&start=#{options[:start]}&rsz=8&q=#{URI.escape(search)}")
     
     begin
-      "Look! #{res['responseData']['results'][rand(8)]['url']}"
-    rescue
-      "Sorry! No image found."
+      grab_tested_image_url(results)
+    rescue => e
+      e.to_s
     end
   end
 
