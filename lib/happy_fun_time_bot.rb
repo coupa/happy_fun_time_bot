@@ -43,7 +43,9 @@ class HappyFunTimeBot
   def connect
     client.connect
     client.auth(self.config[:password])
-    client.send(Jabber::Presence.new.set_type(:available))
+    pres = Jabber::Presence.new.set_type(:available)
+    pres.set_status(%Q{})
+    client.send(pres)
 
     salutation = config[:nick].split(/\s+/).first
 
