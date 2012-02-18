@@ -37,8 +37,8 @@ class Google
     
     begin
       grab_tested_image_url(results)
-    rescue => e
-      e.to_s
+    rescue
+      "Sorry! No image found."
     end
   end
 

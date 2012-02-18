@@ -29,21 +29,12 @@ end
   rand(2) == 1 ? "Correct! (cyn)" : "J.K. (cyn)"
 end
 
-@bot.add_responder('roll', :help_text => "Roll X dice that are each Y sided. XdY (e.g. 2d21)") do |from, args|
-  matches = /(\d+)d(\d+)(.*)/.match(args)
-  dice_count = $1.to_i
-  sides = $2.to_i
-  statement = $3
-  return_val = "@" + from.split(" ").first + " "
-  if dice_count <= 20 && sides <= 100
-    dice_count.times do 
-      return_val += rand(sides).to_s + " "
-    end
-    return_val += "=>" + statement
-  else
-    return_val = "I can't roll (allthethings)"
-  end
-  return_val
+@bot.add_responder('8ball', :help_text => "Ask Magic 8-ball a question") do |from, args|
+  EightBall.ask(from, args)
+end
+
+@bot.add_responder('roll', :help_text => "Roll X dice that are each Y sided. XdY (e.g. 2d20)") do |from, args|
+  Dice.roll(from, args)
 end
 
 @bot.run!

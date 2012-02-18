@@ -12,6 +12,8 @@ require 'responder'
 require 'bot/muc_client'
 require 'google'
 require 'urban_dictionary'
+require 'eight_ball'
+require 'dice'
 
 class HappyFunTimeBot
   attr_accessor :config, :client, :muc, :responders, :command_regexp
