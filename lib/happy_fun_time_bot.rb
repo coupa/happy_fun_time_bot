@@ -10,11 +10,7 @@ $: << File.expand_path(File.dirname(__FILE__))
 
 require 'responder'
 require 'bot/muc_client'
-require 'google'
-require 'urban_dictionary'
-require 'eight_ball'
-require 'dice'
-require 'you_tube'
+Dir[File.expand_path("responders/*.rb", File.dirname(__FILE__))].each {|file| require file }
 
 class HappyFunTimeBot
   attr_accessor :config, :client, :muc, :responders, :command_regexp
