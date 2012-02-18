@@ -11,6 +11,7 @@ config = YAML.load_file(File.expand_path('../../config/hipchat.yml', __FILE__))
 #plusgin responder types located in lib/responder_types
 responder_types = [
   Google,
+  GoogleDictionary,
   YouTube,
   UrbanDictionary,
   EightBall,
