@@ -14,6 +14,7 @@ require 'google'
 require 'urban_dictionary'
 require 'eight_ball'
 require 'dice'
+require 'you_tube'
 
 class HappyFunTimeBot
   attr_accessor :config, :client, :muc, :responders, :command_regexp

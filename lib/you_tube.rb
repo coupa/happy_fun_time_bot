@@ -7,7 +7,7 @@ class YouTube
   format :json
 
   def self.get_youtube_url(search)
-    res = YouTube.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(args)}&alt=json")
+    res = YouTube.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(search)}&alt=json")
     res["feed"]["entry"][0]["link"][0]['href']
   end
 end

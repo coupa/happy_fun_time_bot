@@ -18,6 +18,10 @@ config = YAML.load_file(File.expand_path('../../config/hipchat.yml', __FILE__))
   Google.get_image_url(args)
 end
 
+@bot.add_responder('vid', :help_text => "Search YouTube for a Video") do |from, args|
+  YouTube.get_youtube_url(args)
+end
+
 @bot.add_responder('slang', :help_text => "Search UrbanDictionary for word") do |from, args|
   UrbanDictionary.get_term(args)
 end

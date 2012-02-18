@@ -47,9 +47,4 @@ class Google
     meanings = result['primaries']['entries'].select{|entry| entry["type"] == 'meaning' }.join('\n')
     meanings
   end
-
-  def self.get_youtube_url(search)
-    res = Google.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(args)}&alt=json")
-    res["feed"]["entry"][0]["link"][0]['href']
-  end
 end
