@@ -36,8 +36,8 @@ class HappyFunTimeBot
   end
 
   def help
-    commands = self.responders.map{|r| "#{r.command}#{" -> #{r.options[:help_text]}" if r.options[:help_text]}"}
-    commands << "! -> clears screen of naughty"
+    commands = self.responders.map{|r| "#{r.command.ljust(10)}#{" -> #{r.options[:help_text]}" if r.options[:help_text]}"}
+    commands << "#{'!'.ljust(10)} -> clears screen of naughty"
     "Available Commands\n#{commands.join("\n")}"
   end
 
