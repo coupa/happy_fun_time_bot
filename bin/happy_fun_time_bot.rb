@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require '../lib/happy_fun_time_bot.rb'
+require File.expand_path('../../lib/happy_fun_time_bot.rb', __FILE__)
 
 # For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
-config = YAML.load_file('../config/hipchat.yml')
+config = YAML.load_file(File.expand_path('../../config/hipchat.yml', __FILE__))
 
 @bot = HappyFunTimeBot.new(
   :jid => config["jid"], 
