@@ -9,8 +9,9 @@ require 'cgi'
 $: << File.expand_path(File.dirname(__FILE__))
 
 require 'responder'
+require 'responder_type'
 require 'bot/muc_client'
-Dir[File.expand_path("responders/*.rb", File.dirname(__FILE__))].each {|file| require file }
+Dir[File.expand_path("responder_types/*.rb", File.dirname(__FILE__))].each {|file| require file }
 
 class HappyFunTimeBot
   attr_accessor :config, :client, :muc, :responders, :command_regexp
@@ -26,6 +27,10 @@ class HappyFunTimeBot
     Jabber.debug = true if Jabber.logger = config[:debug]
     self.add_responder('help', :help_text => 'List Available Commands') do |from, args|
       self.help
+    end
+    
+    config[:responder_types].each do |responder_type_class|
+      responder_type_class.add_responder_to(self)
     end
     self
   end

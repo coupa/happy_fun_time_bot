@@ -1,4 +1,7 @@
-class EightBall
+class EightBall < ResponderType
+  HelpText  = "Ask Magic 8-ball a question"
+  Command   = '8ball'
+  
   Answers = [
     "It is certain",
     "It is decidedly so",

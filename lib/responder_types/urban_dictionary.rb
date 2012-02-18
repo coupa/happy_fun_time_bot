@@ -1,6 +1,9 @@
 require 'httparty'
 # Let's create a simple image getter from google.
-class UrbanDictionary
+class UrbanDictionary < ResponderType
+  HelpText  = "Search UrbanDictionary for word"
+  Command   = 'slang'
+  
   include HTTParty
   format :json
 

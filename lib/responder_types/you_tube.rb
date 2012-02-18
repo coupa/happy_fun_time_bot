@@ -2,7 +2,10 @@ require 'rubygems'
 require 'httparty'
 require 'ruby-debug'
 # Let's create a simple image getter from google.
-class YouTube
+class YouTube < ResponderType
+  HelpText  = "Search YouTube for an Video"
+  Command   = 'vid'
+  
   include HTTParty
   format :json
   

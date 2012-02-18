@@ -1,9 +1,12 @@
-class Dice
+class Dice < ResponderType
+  HelpText  = "Roll X dice that are each Y sided. XdY (e.g. 2d20)"
+  Command   = 'roll'
+  
   AcceptableSides = [
     4, 6, 8, 10, 12, 20, 100
   ]
   
-  class << self      
+  class << self
     def roll(from, args)
       matches = /(\d+)d(\d+)(.*)/.match(args)
       dice_count = $1.to_i
