@@ -24,7 +24,11 @@ class EightBall
     "Very doubtful"
   ]
   
-  def self.ask(from, question)
-    "@#{from.split(' ')[0]}, #{question.gsub(' I ', ' you ').gsub(' i ', ' you ')}: #{Answers[rand(Answers.length - 1)]}"
+  class << self    
+    def ask(from, question)
+      "@#{from.split(' ')[0]}, #{question.gsub(' I ', ' you ').gsub(' i ', ' you ')}: #{Answers[rand(Answers.length - 1)]}"
+    end
+    
+    alias :respond :ask   
   end
 end

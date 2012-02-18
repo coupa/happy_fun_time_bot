@@ -5,9 +5,13 @@ require 'ruby-debug'
 class YouTube
   include HTTParty
   format :json
-
-  def self.get_youtube_url(search)
-    res = YouTube.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(search)}&alt=json")
-    res["feed"]["entry"][0]["link"][0]['href']
+  
+  class << self  
+    def get_youtube_url(from, search)
+      res = YouTube.get("http://gdata.youtube.com/feeds/api/videos?q=#{URI.escape(search)}&alt=json")
+      res["feed"]["entry"][0]["link"][0]['href']
+    end
+    
+    alias :respond :get_youtube_url   
   end
 end
