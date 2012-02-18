@@ -16,7 +16,8 @@ responder_types = [
   UrbanDictionary,
   EightBall,
   Dice,
-  Correct
+  Correct,
+  Answers
 ]
 
 @bot = HappyFunTimeBot.new(

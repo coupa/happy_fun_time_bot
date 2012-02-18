@@ -5,9 +5,16 @@ Have happy fun times with this configurable XMPP bot!  It is SO easy to use, esp
 # Installation 
 
 Please copy config/hipchat.example.yml over to config/hipchat.yml and edit appropriately.
+
 For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
 
+Copy config/yahoo.example.yml over to config/yahoo.yml and edit appropriately.
+
+Get a Yahoo app id @ http://developer.yahoo.com/answers/
+
+
 Add responders to bin/happy_fun_time_bot.rb
+
 and to run:
 
 >cd bin; ruby bin/happy_fun_time_bot.rb
