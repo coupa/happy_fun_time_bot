@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'httparty'
 class Answers < ResponderType
   HelpText  = "Look up a question in Yahoo Answers"

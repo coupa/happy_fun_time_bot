@@ -17,10 +17,11 @@ responder_types = [
   EightBall,
   Dice,
   Correct,
-  Answers
+  Answers,
+  Wolfram
 ]
 
-@bot = HappyFunTimeBot.new(
+Bot = HappyFunTimeBot.new(
   :jid              => config["jid"], 
   :nick             => config["nick"], 
   :room             => config["room"], 
@@ -28,4 +29,4 @@ responder_types = [
   :responder_types  => responder_types
 )
 
-@bot.run!
+Bot.run!

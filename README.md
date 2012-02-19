@@ -12,6 +12,7 @@ Copy config/yahoo.example.yml over to config/yahoo.yml and edit appropriately.
 
 Get a Yahoo app id @ http://developer.yahoo.com/answers/
 
+Do the same thing with config/wolfram.example.yml
 
 Add responders to bin/happy_fun_time_bot.rb
 
