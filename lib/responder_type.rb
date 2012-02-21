@@ -5,5 +5,9 @@ class ResponderType
         respond(from, args)
       end
     end
+    
+    def respond
+      raise RuntimeError.new("Please implement the respond method in your reponder type class")
+    end
   end
 end
