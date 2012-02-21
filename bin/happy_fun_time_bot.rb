@@ -18,7 +18,8 @@ responder_types = [
   Dice,
   Correct,
   Answers,
-  Wolfram
+  Wolfram,
+  Jira
 ]
 
 Bot = HappyFunTimeBot.new(
