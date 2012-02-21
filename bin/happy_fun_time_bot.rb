@@ -8,19 +8,8 @@ require File.expand_path('../../lib/happy_fun_time_bot.rb', __FILE__)
 # For hipchat, your :jid, :room and :password are available at https://www.hipchat.com/account/xmpp
 config = YAML.load_file(File.expand_path('../../config/hipchat.yml', __FILE__))
 
-#plusgin responder types located in lib/responder_types
-responder_types = [
-  Google,
-  GoogleDictionary,
-  YouTube,
-  UrbanDictionary,
-  EightBall,
-  Dice,
-  Correct,
-  Answers,
-  Wolfram,
-  Jira
-]
+#Add and remove responder types plugins in the yaml
+responder_types = YAML.load_file(File.expand_path('../../config/responder_types.yml', __FILE__))
 
 Bot = HappyFunTimeBot.new(
   :jid              => config["jid"], 
