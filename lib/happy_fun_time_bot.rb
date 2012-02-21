@@ -30,7 +30,7 @@ class HappyFunTimeBot
     end
     
     config[:responder_types].each do |responder_type_class|
-      responder_type_class.add_responder_to(self)
+      Kernel.const_get(responder_type_class).add_responder_to(self)
     end
     self
   end
