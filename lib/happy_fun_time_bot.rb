@@ -37,7 +37,6 @@ class HappyFunTimeBot
 
   def help
     commands = self.responders.map{|r| "#{r.command.ljust(10)}#{" -> #{r.options[:help_text]}" if r.options[:help_text]}"}
-    commands << "#{'!'.ljust(10)} -> clears screen of naughty"
     "Available Commands\n#{commands.join("\n")}"
   end
 
@@ -67,7 +66,6 @@ class HappyFunTimeBot
 
   def process(from, command)
     File.open(File.expand_path('../../log/debug.log', __FILE__), 'a') {|f| f.write("Running process(#{from}, #{command})\n") }
-    clear_screen and return if command == '!!'
     return [] if !responders.any? {|r| r.command.nil? } and !(command =~ self.config[:command_regex])
 
     responders.select {|r| r.responds_to?($1) }.map  do |responder|
@@ -81,12 +79,6 @@ class HappyFunTimeBot
     File.open(File.expand_path('../../log/debug.log', __FILE__), 'a') {|f| f.write("\n#{e.message}\n\n#{e.backtrace.to_yaml}\n") }
   end
   
-  def clear_screen
-    send_response("http://images1.wikia.nocookie.net/__cb20090901163013/uncyclopedia/images/e/eb/Blank.jpg")
-    send_response("http://www.123print.com/Designs/101014/Upload-Here-Blank-10101467-SB.jpg")
-    send_response("http://rocketdock.com/images/screenshots/Blank.png")
-  end
-
   def send_response(msg)
     muc.send Jabber::Message.new(muc.room, msg)
   end
