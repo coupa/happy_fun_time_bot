@@ -15,11 +15,21 @@ class Wolfram < ResponderType
   class << self  
     def respond(from, search)
       response = Wolfram.get(BaseUri + URI.escape(search))
-      pods     = response['queryresult']["pod"]
+      
+      pods     = {}
+      if response['queryresult'] && response['queryresult']['pod'] 
+        pods = response['queryresult']["pod"]
+      elsif response["queryresult"] && response["queryresult"]["assumptions"]
+        new_search = response["queryresult"]["assumptions"]["assumption"]["value"][0]["name"] + ' ' + search
+        return respond(from, new_search)
+      else
+        return "Even the vast knowledge of wolfram cannot help you with '#{search}'"
+      end  
+      
+      pods      = [pods] if pods.is_a?(Hash)
       subpods  = pods.collect{|pod| pod["subpod"].is_a?(Hash) ? [pod["subpod"]] : pod["subpod"]}.flatten
       images   = subpods.select{|subpod| !subpod["plaintext"] }.collect{|subpod| subpod["img"]["src"]}.collect{|img| img + '.jpg'}
       images.each do |image| Bot.send(:send_response,image) end
-      
       subpods.select{|subpod| subpod["plaintext"] }.collect{|subpod| subpod["plaintext"]}.flatten.join("\n")      
     end
   end
